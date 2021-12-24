@@ -162,7 +162,7 @@ public class AudioHandler extends AudioEventAdapter implements AudioSendHandler
         {
             QueuedTrack clone = new QueuedTrack(track.makeClone(), track.getUserData(RequestMetadata.class));
             if(repeatMode == RepeatMode.ALL)
-                queue.add(clone);
+                queue.addAt(queue.size(), clone);
             else
                 queue.addAt(0, clone);
         }
