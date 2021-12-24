@@ -166,6 +166,12 @@ public class AudioHandler extends AudioEventAdapter implements AudioSendHandler
             else
                 queue.addAt(0, clone);
         }
+
+        else if (endReason == AudioTrackEndReason.LOAD_FAILED) {
+            System.out.println(String.format("Loading track %s failed, re-adding to front of queue", track));
+            QueuedTrack clone = new QueuedTrack(track.makeClone(), track.getUserData(RequestMetadata.class));
+            queue.addAt(0, clone);
+        }
         
         if(queue.isEmpty())
         {
